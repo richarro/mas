@@ -13,11 +13,8 @@
 
 <div class="menu">
 	<ul>
-		<li><a href="index.php" <?php if( $page == 'index') echo 'class="active"'?> >Index</a></li>
-		<li><a href="view.php" <?php if( $page == 'view') echo 'class="active"'?> >View</a></li>
-		<li><a href="add.php" <?php if( $page == 'about') echo 'class="active"'?> >Add</a></li>
-	</ul>
-</div>
+		<li><a href="index.php" <?php if( $page == 'index') echo 'class="active"'?> >Home</a></li>
+		</div>
 
 <h2>View Current Membership</h2>
 <div class="container">
@@ -40,7 +37,12 @@
 <?php
 include 'database.php';
 	$pdo = Database::connect();
-	$sql = 'SELECT * FROM MEMBERS A, ref_typ_desc B WHERE A.type=B.typ_cd ORDER BY ID DESC';
+	$sql = 
+	'SELECT * 
+	FROM members a
+	LEFT JOIN ref_typ_desc b ON a.type = b.typ_cd
+	ORDER BY ID DESC';
+	
 	foreach ($pdo->query($sql) as $row) {
 			echo '<tr>';
 			echo '<td>'. $row['id'] . '</td>';
@@ -58,6 +60,9 @@ Database::disconnect();
 	</table>
 </div>
 	</div> <!-- /container -->
+<br>
+<a href="create.php" <?php if( $page == 'create') echo 'class="active"'?> >Create a New Member</a><br>
+<a class="btn" href="index.php">Back</a>
 
 </body>
 </html>
