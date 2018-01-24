@@ -18,3 +18,7 @@ CREATE TABLE member(
   mem_add_date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   mem_last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
  );
+
+/* this statement is to add data into table after its created */
+INSERT INTO member (mem_fname, mem_mi, mem_lname, mem_duty_ph, mem_cell_number, mem_add_1, mem_add_2, mem_email, mem_installation, mem_category_cd, mem_type, mem_remarks, mem_position)
+VALUES ('Jason', 'T', 'Kidder', '225-4225', '080-9158-6594', 'PSC 78 Box 146', 'APO, AP 96326', 'robin.kidder@yahoo.com', 'Yokota', 'AD', 'I', ' ', 'President');
