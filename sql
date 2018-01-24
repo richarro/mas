@@ -22,3 +22,14 @@ CREATE TABLE member(
 /* this statement is to add data into table after its created */
 INSERT INTO member (mem_fname, mem_mi, mem_lname, mem_duty_ph, mem_cell_number, mem_add_1, mem_add_2, mem_email, mem_installation, mem_category_cd, mem_type, mem_remarks, mem_position)
 VALUES ('Jason', 'T', 'Kidder', '225-4225', '080-9158-6594', 'PSC 78 Box 146', 'APO, AP 96326', 'robin.kidder@yahoo.com', 'Yokota', 'AD', 'I', ' ', 'President');
+
+CREATE TABLE ref_member_type (
+    ref_mem_typ CHAR (1) PRIMARY KEY,
+    ref_mem_typ_desc VARCHAR (15) NOT NULL
+    );
+    
+INSERT INTO ref_member_type 
+VALUES ('I', 'Individual');
+
+INSERT INTO ref_member_type
+VALUES ('F', 'Family');
