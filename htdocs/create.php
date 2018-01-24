@@ -4,50 +4,50 @@ require 'database.php';
  
 if ( !empty($_POST)) {
 // keep track validation errors
-		$fnameError = null;
-		$lnameError = null;
-		$emailError = null;
-		$phoneError = null;
-		$typeError = null;
+		$mem_fnameError = null;
+		$mem_lnameError = null;
+		$mem_emailError = null;
+		$mem_cell_numberError = null;
+		$mem_typeError = null;
 		 
 // keep track post values
-		$fname = $_POST['fname'];
-		$lname = $_POST['lname'];
-		$email = $_POST['email'];
-		$phone = $_POST['phone'];
-		$type = $_POST['type'];
+		$mem_fname = $_POST['mem_fname'];
+		$mem_lname = $_POST['mem_lname'];
+		$mem_email = $_POST['mem_email'];
+		$mem_cell_number = $_POST['mem_cell_number'];
+		$mem_type = $_POST['mem_type'];
 		
 // validate input
 		$valid = true;
-		if (empty($fname)) {
+		if (empty($mem_fname)) {
 			$fnameError = 'Please enter Name';
 			$valid = false;
 		}
 		 
 		$valid = true;
-		if (empty($lname)) {
+		if (empty($mem_lname)) {
 			$lnameError = 'Please enter Name';
 			$valid = false;
 		}
 		
-		if (empty($email)) {
+		if (empty($mem_email)) {
 			$emailError = 'Please enter Email Address';
 			$valid = false;
 			
-		} else if ( !filter_var($email,FILTER_VALIDATE_EMAIL) ) {
-			$emailError = 'Please enter a valid Email Address';
+		} else if ( !filter_var($mem_email,FILTER_VALIDATE_EMAIL) ) {
+			$mem_emailError = 'Please enter a valid Email Address';
 			$valid = false;
 		}
 		
 		$valid = true;
-		if (empty($phone)) {
-			$phoneError = 'Please enter phone number';
+		if (empty($mem_cell_number)) {
+			$mem_cell_numberError = 'Please enter phone number';
 			$valid = false;
 		}
 
 		$valid = true;
-		if (empty($type)) {
-			$typeError = 'Please select membership type';
+		if (empty($mem_type)) {
+			$mem_typeError = 'Please select membership type';
 			$valid = false;
 		}
 			 
@@ -55,9 +55,9 @@ if ( !empty($_POST)) {
 		if ($valid) {
 			$pdo = Database::connect();
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			$sql = "INSERT INTO members (fname,lname,email,phone,type) values(?, ?, ?, ?, ?)";
+			$sql = "INSERT INTO member (mem_fname,mem_lname,mem_email,mem_cell_number,mem_type) values(?, ?, ?, ?, ?)";
 			$q = $pdo->prepare($sql);
-			$q->execute(array($fname,$lname,$email,$phone,$type));
+			$q->execute(array($mem_fname,$mem_lname,$mem_email,$mem_cell_number,$mem_type));
 			Database::disconnect();
 			header("Location: index.php");
 		}
@@ -81,52 +81,52 @@ if ( !empty($_POST)) {
 		</div>
  
 <form class="form-horizontal" action="create.php" method="post">
-	<div class="control-group <?php echo !empty($fnameError)?'error':'';?>">
+	<div class="control-group <?php echo !empty($mem_fnameError)?'error':'';?>">
 		<label class="control-label">First Name</label>
 		<div class="controls">
-				<input name="fname" type="text"  placeholder="First Name" value="<?php echo !empty($fname)?$fname:'';?>">
-				<?php if (!empty($fnameError)): ?>
-						<span class="help-inline"><?php echo $fnameError;?></span>
+				<input name="mem_fname" type="text"  placeholder="First Name" value="<?php echo !empty($mem_fname)?$mem_fname:'';?>">
+				<?php if (!empty($mem_fnameError)): ?>
+						<span class="help-inline"><?php echo $mem_fnameError;?></span>
 				<?php endif; ?>
 		</div>
 	</div>
 	
-	<div class="control-group <?php echo !empty($lnameError)?'error':'';?>">
+	<div class="control-group <?php echo !empty($mem_lnameError)?'error':'';?>">
 		<label class="control-label">Last Name</label>
 		<div class="controls">
-				<input name="lname" type="text"  placeholder="Last Name" value="<?php echo !empty($lname)?$lname:'';?>">
-				<?php if (!empty($lnameError)): ?>
-						<span class="help-inline"><?php echo $lnameError;?></span>
+				<input name="mem_lname" type="text"  placeholder="Last Name" value="<?php echo !empty($mem_lname)?$mem_lname:'';?>">
+				<?php if (!empty($mem_lnameError)): ?>
+						<span class="help-inline"><?php echo $mem_lnameError;?></span>
 				<?php endif; ?>
 		</div>
 	</div>
 	
-	<div class="control-group <?php echo !empty($emailError)?'error':'';?>">
+	<div class="control-group <?php echo !empty($mem_emailError)?'error':'';?>">
 		<label class="control-label">Email Address</label>
 		<div class="controls">
-				<input name="email" type="text" placeholder="Email Address" value="<?php echo !empty($email)?$email:'';?>">
-				<?php if (!empty($emailError)): ?>
-						<span class="help-inline"><?php echo $emailError;?></span>
+				<input name="mem_email" type="text" placeholder="Email Address" value="<?php echo !empty($mem_email)?$mem_email:'';?>">
+				<?php if (!empty($mem_emailError)): ?>
+						<span class="help-inline"><?php echo $mem_emailError;?></span>
 				<?php endif;?>
 		</div>
 	</div>
 	
-	<div class="control-group <?php echo !empty($phoneError)?'error':'';?>">
+	<div class="control-group <?php echo !empty($mem_cell_numberError)?'error':'';?>">
 		<label class="control-label">Phone Number</label>
 		<div class="controls">
-				<input name="phone" type="text" placeholder="Phone Number" value="<?php echo !empty($phone)?$phone:'';?>">
-				<?php if (!empty($phoneError)): ?>
-						<span class="help-inline"><?php echo $phoneError;?></span>
+				<input name="mem_cell_number" type="text" placeholder="Phone Number" value="<?php echo !empty($mem_cell_number)?$mem_cell_number:'';?>">
+				<?php if (!empty($mem_cell_numberError)): ?>
+						<span class="help-inline"><?php echo $mem_cell_numberError;?></span>
 				<?php endif;?>
 		</div>
 	</div>
 
-	<div class="control-group <?php echo !empty($typeError)?'error':'';?>">
-		<label class="control-label">Membership Type</label>
+	<div class="control-group <?php echo !empty($mem_typeError)?'error':'';?>">
+		<label class="control-label">Membership Type (I or F)</label>
 		<div class="controls">
-				<input name="type" type="text" placeholder="Membership Type" value="<?php echo !empty($type)?$type:'';?>">
-				<?php if (!empty($typeError)): ?>
-						<span class="help-inline"><?php echo $typeError;?></span>
+				<input name="mem_type" type="text" placeholder="Membership Type" value="<?php echo !empty($mem_type)?$mem_type:'';?>">
+				<?php if (!empty($mem_typeError)): ?>
+						<span class="help-inline"><?php echo $mem_typeError;?></span>
 				<?php endif;?>
 		</div>
 	</div>
