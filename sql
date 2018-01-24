@@ -1,4 +1,5 @@
 DROP TABLE member;    /* remove this statement if you don't already have a member table created */
+DROP TABLE ref_member_type; /* remove this statement if you don't already have a member table created */
 
 CREATE TABLE member(
   mem_no INTEGER (5) PRIMARY KEY AUTO_INCREMENT,
