@@ -39,19 +39,19 @@ include 'database.php';
 	$pdo = Database::connect();
 	$sql = 
 	'SELECT * 
-	FROM members a
-	LEFT JOIN ref_typ_desc b ON a.type = b.typ_cd
-	ORDER BY ID DESC';
+	FROM member a
+	LEFT JOIN ref_member_type b ON a.mem_type = b.ref_mem_typ
+	ORDER BY mem_no DESC';
 	
 	foreach ($pdo->query($sql) as $row) {
 			echo '<tr>';
-			echo '<td>'. $row['id'] . '</td>';
-			echo '<td>'. $row['fname'] . '</td>';
-			echo '<td>'. $row['lname'] . '</td>';
-			echo '<td>'. $row['email'] . '</td>';
-			echo '<td>'. $row['phone'] . '</td>';
-			echo '<td>'. $row['description'] . '</td>';
-			echo '<td>'. $row['add_date'] . '</td>';
+			echo '<td>'. $row['mem_no'] . '</td>';
+			echo '<td>'. $row['mem_fname'] . '</td>';
+			echo '<td>'. $row['mem_lname'] . '</td>';
+			echo '<td>'. $row['mem_email'] . '</td>';
+			echo '<td>'. $row['mem_cell_number'] . '</td>';
+			echo '<td>'. $row['ref_mem_typ_desc'] . '</td>';
+			echo '<td>'. $row['mem_add_date_time'] . '</td>';
 			echo '</tr>';
 								 }
 Database::disconnect();

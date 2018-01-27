@@ -32,14 +32,14 @@
 <?php
  include 'database.php';
  $pdo = Database::connect();
- $sql = 'SELECT * FROM members ORDER BY id DESC';
+ $sql = 'SELECT * FROM member ORDER BY mem_no DESC';
  foreach ($pdo->query($sql) as $row) {
 					echo '<tr>';
-					echo '<td>'. $row['id'] . '</td>';
-					echo '<td>'. $row['fname'] . '</td>';
-					echo '<td>'. $row['lname'] . '</td>';
-					echo '<td>'. $row['email'] . '</td>';
-					echo '<td><a class="btn" href="read.php?id='.$row['id'].'">Read</a></td>';
+					echo '<td>'. $row['mem_no'] . '</td>';
+					echo '<td>'. $row['mem_fname'] . '</td>';
+					echo '<td>'. $row['mem_lname'] . '</td>';
+					echo '<td>'. $row['mem_email'] . '</td>';
+					echo '<td><a class="btn" href="read.php?id='.$row['mem_no'].'">Read</a></td>';
 					echo '</tr>';
  }
  Database::disconnect();
